@@ -3,7 +3,9 @@
 (pkgs.buildFHSUserEnv {
   name = "matlab_install_start";
   targetPkgs = pkgs: (with pkgs;
-    [ udev
+    [ 
+      lsb-release
+      udev
       coreutils
       alsaLib
       dpkg
