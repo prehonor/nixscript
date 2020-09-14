@@ -1,8 +1,8 @@
 with import /home/prehonor/Public/Code/nixpkgs/default.nix {}; 
 mkShell rec {
   name = "juliacomplieenv";
-  
-  
+ # arpack_ = stdenv.lib.arpack;
+ # arpack = arpack_.override { openblas=stdenv.lib.openblas; };
   buildInputs = [
     arpack fftw fftwSinglePrec gmp libgit2 libunwind mpfr
     pcre2.dev openblas openlibm openspecfun readline utf8proc
