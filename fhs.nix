@@ -3,7 +3,8 @@
 (pkgs.buildFHSUserEnv {
   name = "julia";
   targetPkgs = pkgs: (with pkgs;
-    [       
+    [   
+      jdk
       julia
       autoconf
       binutils
@@ -11,6 +12,7 @@
       gnumake
       m4
       pkgconfig
+      stdenv.cc.cc.lib
       stdenv.cc
       utillinux
      # ffmpeg
@@ -29,7 +31,7 @@
       pango
       pixman
       zlib
-     
+
     ] ++ (with pkgs.xorg;
     [ 
       libX11
@@ -51,10 +53,15 @@
       libXt
       libXxf86vm
       # libQtGui
-      qt5.full
+      qt4
+    ]) ++ (with pkgs;
+    [
+     fuse3
     ]));
-    extraBuildCommands = ''
-     # ex
+    profile = ''
+      export JAVA_HOME=${pkgs.jdk.home}
+      unset http_proxy
+      unset https_proxy
     '';
   runScript = "bash";
 }).env

@@ -1,12 +1,13 @@
-{ pkgs ? import /home/prehonor/Public/Code/nixpkgs/default.nix {} }:
+{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
  
 let fhs = pkgs.buildFHSUserEnv {
   name = "android-env";
   targetPkgs = pkgs: with pkgs;
-    [ git
+    [ 
+      flutter
+      gitFull
       gitRepo
       gnupg
-      python2
       curl
       procps
       openssl
@@ -28,12 +29,33 @@ let fhs = pkgs.buildFHSUserEnv {
       lzop
     ];
   multiPkgs = pkgs: with pkgs;
-    [ zlib
+    [ 
+      zlib
     ];
   runScript = "bash";
   profile = ''
+
+    export MAVEN_OPTS='-Xms300m -Xmx300m'
+    export GRADLE_OPTS='-Xms396m -Xmx396m'
+
     export USE_CCACHE=1
     export ANDROID_JAVA_HOME=${pkgs.jdk.home}
+    export FLUTTER_SDK=${pkgs.flutter.unwrapped}
+
+    export PATH=$PATH:/gh/prehonor/Android/Sdk/platform-tools
+
+
+    export PUB_HOSTED_URL=https://pub.flutter-io.cn
+    export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
+    # export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
+    export PUB_CACHE=$PUB_CACHE:$HOME/.pub-cache
+
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unset all_proxy
+
+
   '';
 };
 in pkgs.stdenv.mkDerivation {

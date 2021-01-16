@@ -1,4 +1,4 @@
-with import /home/prehonor/Public/Code/nixpkgs/default.nix {}; 
+with import /gh/prehonor/gitproject/nixpkgs/default.nix {}; 
 mkShell rec {
   name = "react-native";
   

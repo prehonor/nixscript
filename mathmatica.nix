@@ -1,4 +1,4 @@
-{ pkgs ? import /home/prehonor/Public/Code/nixpkgs/default.nix {} }:
+{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
 
 (pkgs.buildFHSUserEnv {
   name = "mathmatica_install_start";
@@ -9,8 +9,8 @@
    gtk2 gtk3 webkitgtk gdk-pixbuf cairo pango
    atk 
     perl
-	  lsb-release
-	  udev
+    lsb-release
+    udev
     coreutils
     patchelf
     alsaLib
@@ -33,7 +33,7 @@
     libGLU
     ]) ++ (with pkgs.xorg;
     [ 
-	  libX11
+    libX11
     libXext
     libXtst
     libXi
@@ -53,5 +53,4 @@
     libXxf86vm
     ]);
   runScript = "bash"; # 安装时用
- # runScript = "/ah/prehonor/Programmers/R2019a/bin/matlab";  #安装后使用
 }).env

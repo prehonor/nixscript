@@ -1,9 +1,10 @@
-{ pkgs ? import /home/prehonor/Public/Code/nixpkgs/default.nix {} }:
+{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
 
 (pkgs.buildFHSUserEnv {
   name = "matlab_install_start";
   targetPkgs = pkgs: (with pkgs;
     [ 
+      libselinux
       lsb-release
       udev
       coreutils
@@ -27,28 +28,49 @@
       atk
       gdk_pixbuf
       cairo
+
+      cups
+      libfakeXinerama
+      nss
+      nspr
+
+      # libudev0-shim libgcrypt libgudev e2fsprogs expat SDL2
+
+
     ]) ++ (with pkgs.xorg;
     [ libX11
-	libXft
-    libXcursor
-    libXrandr
-    libXext
-    libSM
-    libICE
-    libX11
-    libXrandr
-    libXdamage
-    libXrender
-    libXfixes
-    libXcomposite
-    libXcursor
-    libxcb
-    libXi
-    libXScrnSaver
-    libXtst
-    libXt
-    libXxf86vm
+	    libXft
+      libXcursor
+      libXrandr
+      libXext
+      libSM
+      libICE
+      libX11
+      libXrandr
+      libXdamage
+      libXrender
+      libXfixes
+      libXcomposite
+      libXcursor
+      libxcb
+      libXi
+      libXScrnSaver
+      libXtst
+      libXt
+      libXxf86vm
+
+
     ]);
-  # runScript = "bash"; # 安装时用
-  runScript = "/ah/prehonor/Programmers/R2019a/bin/matlab";  #安装后使用
+
+
+  runScript = ''
+    bash
+  '';
+
+  profile = ''
+   
+    export MATLABROOT=/ah/prehonor/Programmers/R2020b
+
+  '';
+
 }).env
