@@ -1,20 +1,16 @@
- with import /gh/prehonor/gitproject/nixpkgs/default.nix {}; 
+with import <nixpkgs> {}; 
 mkShell rec {
   name = "patchCppTools";
-  python3 = python36Full.withPackages(ps: with ps; [ virtualenv pip urllib3 ]);
+
   buildInputs = [
-    # clang-tools
     jdk11
-    llvm
-    clang
-    mono
+    llvm_9
+    clang_9
     gdb
     gcc
     cmake
     pkg-config
     vscode
-    nasm
-    python3
   ];
   
   ld = stdenv.lib.makeLibraryPath ([

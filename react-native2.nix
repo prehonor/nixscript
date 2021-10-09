@@ -1,11 +1,9 @@
-{ pkgs ? import /home/prehonor/Public/Code/nixpkgs/default.nix {} }:
+with import <nixpkgs> {};
 (pkgs.buildFHSUserEnv {
   name = "android-sdk-env";
   targetPkgs = pkgs: (with pkgs;
     [
       jdk
-      nodejs-12_x
-      yarn
       watchman
       fontconfig
       zlib

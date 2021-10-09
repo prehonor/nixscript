@@ -1,5 +1,5 @@
-{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
- 
+{ pkgs ? import <nixpkgs> {} }:
+
 let fhs = pkgs.buildFHSUserEnv {
   name = "android-env";
   targetPkgs = pkgs: with pkgs;

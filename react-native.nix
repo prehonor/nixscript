@@ -1,4 +1,4 @@
-with import /home/prehonor/Public/Code/nixpkgs/default.nix {}; 
+with import <nixpkgs> {}; 
 mkShell rec {
   name = "react-native";
   
@@ -10,8 +10,6 @@ mkShell rec {
 #     watchman
     fontconfig
     zlib
-     yarn
-     nodejs-12_x
   ];
 
   ld = stdenv.lib.makeLibraryPath ([

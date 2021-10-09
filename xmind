@@ -10,18 +10,13 @@ buildInputs = [
       atk
       gdk-pixbuf
       at-spi2-atk
+      at-spi2-core
+      mesa
       dbus
       dconf
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-base
 
-      qt515_my.qtsvg
-      qt515_my.qtsensors
-      qt515_my.qt3d
-      qt515_my.qtgamepad
-      qt515_my.qttools
-      qt515_my.qtserialbus
-      qt515_my.qtserialport
 
       libdrm
       libxkbcommon
@@ -61,10 +56,7 @@ buildInputs = [
       libgpgerror
   ];
   nativeBuildInputs = [
-        #  wrapGAppsHook
-        #  autoPatchelfHook
-         # makeWrapper
-         # dpkg
+
   ];
   
   ld = stdenv.lib.makeLibraryPath ([
@@ -77,13 +69,8 @@ buildInputs = [
      interp="$(cat $NIX_CC/nix-support/dynamic-linker)"
      rpath=${ld}
 
-     export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}" # also right
-     export QT_PLUGIN_PATH=/ah/prehonor/Programmers/MindMaster-8/
+     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:/ah/prehonor/Programmers/XMind/
 
-     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:/ah/prehonor/Programmers/MindMaster-8/lib
-
-
-     export QT_XKB_CONFIG_ROOT=${xkeyboard_config}/share/X11/xkb
      unset http_proxy
      unset https_proxy
      unset ftp_proxy

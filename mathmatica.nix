@@ -1,4 +1,4 @@
-{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
+{ pkgs ? with import <nixpkgs> {} }:
 
 (pkgs.buildFHSUserEnv {
   name = "mathmatica_install_start";

@@ -1,4 +1,4 @@
-{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
+with import <nixpkgs> {};
 
 (pkgs.buildFHSUserEnv {
   name = "matlab_install_start";

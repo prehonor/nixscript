@@ -1,4 +1,4 @@
-{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
+{ pkgs ? with import <nixpkgs> {} }:
  
 let fhs = pkgs.buildFHSUserEnv {
   name = "onlyoffice";

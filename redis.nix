@@ -1,10 +1,10 @@
-{ pkgs ? import /gh/prehonor/gitproject/nixpkgs/default.nix {} }:
-	with pkgs;
-  pkgs.mkShell {
+with import <nixpkgs> {}; 
+mkShell rec { 
 
     buildInputs = [
-                    cmake gcc gdb llvm clang 
-
-                    lua pkgconfig systemd          
-                  ];
-  }
+            # autoPatchelfHook
+      cmake gcc gdb 
+    
+      pkgconfig systemd    
+    ];
+}

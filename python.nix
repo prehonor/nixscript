@@ -1,4 +1,4 @@
-with import /gh/prehonor/gitproject/nixpkgs/default.nix {}; 
+with import <nixpkgs> {}; 
 mkShell rec { 
 
   name = "python3_env";

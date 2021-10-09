@@ -1,4 +1,4 @@
-with import /gh/prehonor/gitproject/nixpkgs/default.nix {}; 
+with import <nixpkgs> {}; 
 mkShell rec { 
 
   name = "pythonEnv";
@@ -7,8 +7,8 @@ mkShell rec {
   # pypy = pypy3.withPackages(ps: with ps; [ pip urllib3 ]);
 
   buildInputs = [
-                        pkgs.qt5Full
-                    pkgs.qtcreator
+    pkgs.qt5Full
+    pkgs.qtcreator
     python
    #  pypy
    
@@ -16,9 +16,13 @@ mkShell rec {
 
     libxml2 libxslt openssl # pypy3 install lxml 需要的lib
     libmysqlclient # pymysql 需要的lib
+    clang_9 lldb_9 llvm_9
 
     # gcc gfortran  gdb blas lapack
     # cmake lapack openblasCompat
+
+    pkg-config
+    zlib
     
   ];
   
@@ -38,7 +42,7 @@ mkShell rec {
   shellHook = ''
   
     export PATH=:"/home/prehonor/.local/bin":$PATH
-    export LD_LIBRARY_PATH=${ld}:/nix/store/h1rvnw5gvfw82m6maiw9jb2g89ygdbis-openjdk-11.0.9+11/lib/openjdk/lib/server:/nix/store/h1rvnw5gvfw82m6maiw9jb2g89ygdbis-openjdk-11.0.9+11/lib/openjdk/lib:/home/prehonor/Public/test:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=${ld}:/home/prehonor/Public/test:$LD_LIBRARY_PATH
 
     # 
 
@@ -53,6 +57,9 @@ mkShell rec {
 
     export JAVA_CPPFLAGS=-I${jdk11}/include/
     export JAVA_HOME=${jdk11.home}
+
+    export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
+    export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
     
 
     unset http_proxy

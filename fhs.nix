@@ -1,4 +1,4 @@
- { pkgs ? import /home/prehonor/Public/Code/nixpkgs/default.nix {} }:
+ { pkgs ? with import <nixpkgs> {} }:
 
 (pkgs.buildFHSUserEnv {
   name = "julia";

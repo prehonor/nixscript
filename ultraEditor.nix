@@ -1,4 +1,4 @@
- with import /home/prehonor/Public/Code/nixpkgs/default.nix {}; 
+with import <nixpkgs> {}; 
 mkShell rec {
   name = "patchCppTools";
   buildInputs = [

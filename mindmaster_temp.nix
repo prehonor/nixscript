@@ -1,7 +1,7 @@
 with import <nixpkgs> {}; 
 mkShell rec {
   name = "mindmaster";
-buildInputs = [
+  buildInputs = [
       gnome3.gsettings_desktop_schemas
       glib
       gtk3
@@ -14,22 +14,9 @@ buildInputs = [
       dconf
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-base
-
-      qt515_my.qtsvg
-      qt515_my.qtsensors
-      qt515_my.qt3d
-      qt515_my.qtgamepad
-      qt515_my.qttools
-      qt515_my.qtserialbus
-      qt515_my.qtserialport
-
-      libdrm
-      libxkbcommon
-      pango
-      cups
-
-      postgresql.lib
-
+     # qt5.qtbase
+     # qt5.qtdeclarative
+     # qt5.qtsvg
       xorg.libX11
       xorg.libxcb
       xorg.xkeyboardconfig
@@ -71,23 +58,23 @@ buildInputs = [
       stdenv.cc.cc.lib zlib fontconfig.lib libudev0-shim glibc curl pulseaudio
   ] ++ buildInputs );
 
-
-
+#     find ./bin -type f -perm -0100 \
+#         -exec patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" {} \;
    shellHook = ''
      interp="$(cat $NIX_CC/nix-support/dynamic-linker)"
      rpath=${ld}
 
-     export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}" # also right
-     export QT_PLUGIN_PATH=/ah/prehonor/Programmers/MindMaster-8/
-
+    export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}" # also right
+    export QT_PLUGIN_PATH=/ah/prehonor/Programmers/MindMaster-8/
+    
+    # export QT_QPA_PLATFORM_PLUGIN_PATH=/ah/prehonor/Programmers/MindMaster-8/plugins/platforms
      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:/ah/prehonor/Programmers/MindMaster-8/lib
-
-
      export QT_XKB_CONFIG_ROOT=${xkeyboard_config}/share/X11/xkb
      unset http_proxy
      unset https_proxy
      unset ftp_proxy
      unset all_proxy
 
+   # find /home/prehonor/Downloads/edraw/opt/EdrawMax-10/lib -type f -perm -0100 -exec patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" {} \;
     '';
 }
