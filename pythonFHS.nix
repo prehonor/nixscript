@@ -20,7 +20,7 @@ let
 
             libxml2 libxslt openssl libGL
             libmysqlclient
-            clang_9 lldb_9 llvm_9
+            gcc binutils
 
 
             pkg-config
@@ -30,7 +30,7 @@ let
           
           profile = ''
 
-                export PATH=:"/home/prehonor/.local/bin":$PATH
+                export PATH=$PATH:"$(rustc --print sysroot)/bin/":"$CARGO_HOME/bin":"/home/prehonor/.local/bin":"/ah/prehonor/.npm/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator:/gh/prehonor/gitproject/wasmtime/target/debug"
                 export LD_LIBRARY_PATH='/home/prehonor/Public/test':$LD_LIBRARY_PATH
 
 

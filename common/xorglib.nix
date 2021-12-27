@@ -1,0 +1,24 @@
+{pkgs}:
+with pkgs.xorg;
+[
+	libICE
+	libXrender 
+	libXtst 
+	libXt
+	libXinerama 
+	libXcursor
+	libXi 
+	libXmu 
+	libXext 
+	libX11 
+	libXv 
+	libXrandr
+    libxcb 
+    libXcomposite  
+    libXdamage 
+    libXfixes 
+    libXScrnSaver
+	libXft
+	libSM
+	libXxf86vm
+]

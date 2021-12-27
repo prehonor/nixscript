@@ -4,8 +4,9 @@ mkShell rec {
 
   buildInputs = [
     autoPatchelfHook
+    libselinux
     fontconfig
-    electron_9
+    electron
     systemd
     gtk3 webkitgtk gdk-pixbuf
     cairo pango libpulseaudio glib alsaLib libdrm mesa
@@ -20,7 +21,7 @@ mkShell rec {
   ];
   
   ld = lib.makeLibraryPath ([
-      stdenv.cc.cc.lib zlib fontconfig.lib 
+      stdenv.cc.cc.lib fontconfig.lib #  zlib 
   ] ++ buildInputs );
 
 

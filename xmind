@@ -2,66 +2,21 @@ with import <nixpkgs> {};
 mkShell rec {
   name = "mindmaster";
 buildInputs = [
-      gnome3.gsettings_desktop_schemas
-      glib
       gtk3
-      gtk2
-      cairo
-      atk
-      gdk-pixbuf
-      at-spi2-atk
-      at-spi2-core
-      mesa
-      dbus
-      dconf
-      gst_all_1.gstreamer
-      gst_all_1.gst-plugins-base
-
-
-      libdrm
-      libxkbcommon
-      pango
-      cups
-
-      postgresql.lib
-
-      xorg.libX11
-      xorg.libxcb
-      xorg.xkeyboardconfig
-      xorg.libXi
-      xorg.libXcursor
-      xorg.libXdamage
-      xorg.libXrandr
-      xorg.libXcomposite
-      xorg.libXext
-      xorg.libXfixes
-      xorg.libXrender
+      jdk11
       xorg.libXtst
-      xorg.libXScrnSaver
-      nss
-      nspr
-      alsaLib
-      libpulseaudio
-      fontconfig
-
-
-      libGL
-      freetype
-      expat
-      xkeyboard_config
-      krb5
-      e2fsprogs
-
-      p11-kit
-      libgpgerror
+      gnome2.gtk
+      gnome2.gnome_vfs
+      gnome2.GConf
   ];
   nativeBuildInputs = [
-
+      autoPatchelfHook
   ];
   
   ld = stdenv.lib.makeLibraryPath ([
-      stdenv.cc.cc.lib zlib fontconfig.lib libudev0-shim glibc curl pulseaudio
-  ] ++ buildInputs );
+      gtk3 xorg.libXtst 
+      gnome2.gtk
+  ]);
 
 
 
@@ -69,7 +24,8 @@ buildInputs = [
      interp="$(cat $NIX_CC/nix-support/dynamic-linker)"
      rpath=${ld}
 
-     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:/ah/prehonor/Programmers/XMind/
+     export LD_LIBRARY_PATH=${ld}
+     export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}"
 
      unset http_proxy
      unset https_proxy

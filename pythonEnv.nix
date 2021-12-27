@@ -16,10 +16,7 @@ mkShell rec {
 
     libxml2 libxslt openssl # pypy3 install lxml 需要的lib
     libmysqlclient # pymysql 需要的lib
-    clang_9 lldb_9 llvm_9
-
-    # gcc gfortran  gdb blas lapack
-    # cmake lapack openblasCompat
+    llvm_x lld_x lldb_x clang_x libclang_x
 
     pkg-config
     zlib

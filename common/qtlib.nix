@@ -1,0 +1,35 @@
+{pkgs}:
+with pkgs.libsForQt5; 
+[ 
+  breeze-icons
+  kactivities
+  karchive 
+  kbookmarks 
+  kcompletion 
+  kconfig 
+  kconfigwidgets 
+  kcoreaddons 
+  kdbusaddons 
+  kdegraphics-mobipocket 
+  kiconthemes 
+  kjs 
+  khtml 
+  kio 
+  kparts 
+  kpty 
+  kpurpose 
+  kwallet 
+  kwindowsystem 
+  libkexiv2 
+  phonon 
+  poppler 
+  qca-qt5 
+  threadweaver 
+  kcrash 
+  syntax-highlighting
+  kdoctools # 这个之前放在buildInput里，放这里合适吗？
+  qt5.full 
+  qt5.qtsvg 
+  qt5.qtwebkit 
+  qt5.qtdeclarative
+]
