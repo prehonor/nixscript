@@ -2,15 +2,16 @@ with import <nixpkgs> {};
 mkShell rec {
   name = "patchCppTools";
   buildInputs = [
-    fontconfig
-  gtk3 webkitgtk gdk-pixbuf
-  cairo pango
-  xorg.libX11 xorg.libSM xorg.libXxf86vm
-  glib
+  #   fontconfig
+  # gtk3 webkitgtk gdk-pixbuf
+  # cairo pango
+  # xorg.libX11 xorg.libSM xorg.libXxf86vm
+  # glib
+  jdk8
   # gnome2.gnome_vfs gnome2.GConf
   ];
   
-  ld = stdenv.lib.makeLibraryPath ([
+  ld = lib.makeLibraryPath ([
       stdenv.cc.cc.lib zlib
   ] ++ buildInputs );
 

@@ -6,6 +6,8 @@ let
 	publibs = import ./common/otherlib.nix { inherit pkgs; };
 	xlibs = import ./common/xorglib.nix { inherit pkgs; };
 	qtlibs = import ./common/qtlib.nix { inherit pkgs; };
+	libsforbin = import ./common/bin.nix {inherit pkgs; };
+	LibsBinPath = with pkgs; lib.makeBinPath libsforbin;
 
 	buildInputs = [
       mypy
@@ -21,7 +23,7 @@ let
 
     ld = with pkgs; lib.makeLibraryPath ([
         stdenv.cc.cc.lib fontconfig.lib
-    ] ++ libs);
+    ] ++ libs ++ toollibs);
 
 
     GOROOT = "${pkgs.go.out}/share/go";
@@ -41,12 +43,16 @@ let
 
 		profile = ''
 
+			export PATH=$PATH:${LibsBinPath}
+
+			export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+
 			export MATLABROOT=/ah/prehonor/Programmers/MATLAB/R2021b
 
 
 	    	export ANDROID_HOME="/gh/prehonor/Android/Sdk"
 			export MAVEN_OPTS='-Xms300m -Xmx300m'
-			export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator
+			export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator:$HOME/.emacs.d.doom/bin
 
 
 			export JAVA_CPPFLAGS=-I${jdk11}/include/
@@ -86,7 +92,7 @@ let
 	      	export PYTHON_LIBRARY=${mypy}/lib
 	      	export PYTHON_INCLUDE_DIRS=${mypy}/include/${mypy_v}
 	      	export NCCL_ROOT=${nccl_cudatoolkit_11.dev}
-	      	export CUDNN_ROOT=${cudnn_cudatoolkit_11_2}
+	      	export CUDNN_ROOT=${cudnn_cudatoolkit_11}
 
 	      	# export PIP_PREFIX=/home/prehonor/.local/pythonEnvs/pip_packages
 	      	# export PYTHONPATH="$PIP_PREFIX/${python.sitePackages}:$PYTHONPATH"
@@ -103,7 +109,7 @@ let
 	      	export GUROBI_HOME="/gh/prehonor/opt/gurobi810/linux64"
 	      	export GRB_LICENSE_FILE="/gh/prehonor/opt/gurobi810/gurobi.lic"
 	      	export PATH=$PATH:$GUROBI_HOME/bin
-	      	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:$GUROBI_HOME/lib
+	      	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$GUROBI_HOME/lib
 	      	export LIBPATH=${ld}
 
 	      	export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}"
@@ -124,14 +130,18 @@ let
 	      	export LIBRARY_PATH
 
 	    	source /home/prehonor/.local/pythonEnvs/spider/bin/activate
+	    	
+
 
 	  	'';
 
 	};
-in with pkgs; stdenv.mkDerivation rec {
+in with pkgs; stdenv.mkDerivation {
 
 	name = "fhsenv";
+
 	nativeBuildInputs = [ fhs ];
+
 	shellHook = ''
 
 		exec fhs

@@ -10,6 +10,8 @@ in
     publibs = import ./common/otherlib.nix { inherit pkgs; };
     xlibs = import ./common/xorglib.nix { inherit pkgs; };
     qtlibs = import ./common/qtlib.nix { inherit pkgs; };
+    libsforbin = import ./common/bin.nix {inherit pkgs; };
+    LibsBinPath = lib.makeBinPath libsforbin;
     
 
     buildInputs = [
@@ -39,10 +41,15 @@ in
     shellHook = ''
     
 
+      export PATH=$PATH:${LibsBinPath}
+    
+      export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+
+
       export MATLABROOT=/ah/prehonor/Programmers/MATLAB/R2021b
       export ANDROID_HOME="/gh/prehonor/Android/Sdk"
       export MAVEN_OPTS='-Xms300m -Xmx300m'
-      export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator
+      export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator:$HOME/.emacs.d.doom/bin
 
 
       export JAVA_CPPFLAGS=-I${jdk11}/include/
@@ -61,11 +68,11 @@ in
 
 
 
-      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:/home/prehonor/Public/test:${cudaPackages.cudatoolkit_11}/lib
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:$HOME/Public/test:${cudaPackages.cudatoolkit_11}/lib
 
       export LIBCLANG_PATH="${libclang_x.lib}/lib"
 
-      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/home/prehonor/.local/usr/lib/pkgconfig
+      export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/.local/usr/lib/pkgconfig
 
       # idea 调试 rust 会下载本地调试插件和lldb调试器 ，需要patchelf
 
@@ -82,7 +89,7 @@ in
       export PYTHON_LIBRARY=${mypy}/lib
       export PYTHON_INCLUDE_DIRS=${mypy}/include/${mypy_v}
       export NCCL_ROOT=${nccl_cudatoolkit_11.dev}
-      export CUDNN_ROOT=${cudnn_cudatoolkit_11_2}
+      export CUDNN_ROOT=${cudnn_cudatoolkit_11}
 
       # export PIP_PREFIX=/home/prehonor/.local/pythonEnvs/pip_packages
       # export PYTHONPATH="$PIP_PREFIX/${python.sitePackages}:$PYTHONPATH"
@@ -103,8 +110,9 @@ in
       export LIBPATH=${ld}
 
       
-      export QT_DEBUG_PLUGINS=1
-      export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}" # also right
+      # export QT_DEBUG_PLUGINS=1
+      # export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}" # also right
+
 
       LIBRARY_PATH=""
         for b in ${toString (map lib.getLib libs)}; do
@@ -118,7 +126,7 @@ in
       source /home/prehonor/.local/pythonEnvs/spider/bin/activate
     
 
-
+      # find /home/prehonor/Public/Program/unity/2020.3.26f1c1/Editor -type f -perm -0100 -exec patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" {} \;
       unset http_proxy
       unset https_proxy
       unset ftp_proxy

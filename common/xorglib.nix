@@ -21,4 +21,6 @@ with pkgs.xorg;
 	libXft
 	libSM
 	libXxf86vm
+	libxshmfence
+	xorgproto
 ]

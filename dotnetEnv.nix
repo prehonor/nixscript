@@ -2,7 +2,7 @@ with import <nixpkgs> {};
 mkShell {
   name = "dotnet-env";
   buildInputs = [
-    dotnet-sdk_5
+    dotnet-sdk
   ];
   shellHook = ''
     unset http_proxy

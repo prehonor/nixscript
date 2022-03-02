@@ -4,20 +4,33 @@ mkShell rec {
   
   
   buildInputs = [
-    jdk11
+    jetbrains.jdk
     rustup
-    gcc
-    curl
+    bubblewrap
+    lsb-release
+    libselinux
+    coreutils
+    toybox
+    hwinfo
   ];
   
-  ld = stdenv.lib.makeLibraryPath ([
+  ld = lib.makeLibraryPath ([
       fontconfig.lib
   ] ++ buildInputs );
+  libsforbin = [
+    bubblewrap     # Unprivileged sandboxing tool
+    # getconf      # 这个不需要手动
+    aspcud # Solver for package problems in CUDF format using ASP
+  ];
+  LibsBinPath = lib.makeBinPath libsforbin;
+  host = stdenv.hostPlatform.config;
+
 
   shellHook = ''
-
+    export tt=${host}
     export ANDROID_HOME="/gh/prehonor/Android/Sdk"
     export MAVEN_OPTS='-Xms300m -Xmx300m'
+
 
 
     export JAVA_CPPFLAGS=-I${jdk11}/include/
@@ -34,7 +47,7 @@ mkShell rec {
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 
 
-    export PATH=$PATH:"$(rustc --print sysroot)/bin/":"$CARGO_HOME/bin":"/home/prehonor/.local/bin":"/ah/prehonor/.npm/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator:/gh/prehonor/gitproject/wasmtime/target/debug"
+    export PATH=${LibsBinPath}:$PATH:"$(rustc --print sysroot)/bin/":"$CARGO_HOME/bin":"/home/prehonor/.local/bin":"/ah/prehonor/.npm/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/emulator:/gh/prehonor/gitproject/wasmtime/target/debug"
 
 
 
