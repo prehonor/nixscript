@@ -2,7 +2,7 @@
 with pkgs; 
 [
   pkg-config            # A tool that allows packages to find out information about other packages (wrapper script)
-  libtool           # GNU Libtool, a generic library support script
+  libtool               # GNU Libtool, a generic library support script
   cmake                 # Cross-Platform Makefile Generator
   ninja                 # Small build system with a focus on speed
   rustup 
@@ -15,7 +15,7 @@ with pkgs;
   gobject-introspection # A middleware layer between C libraries and language bindings
   toybox
   hwinfo
-  gcc gdb
+  gcc gdb gnumake automake autoconf gnum4
   # llvmPackages_latest.llvm llvmPackages_latest.bintools llvmPackages_latest.lld
   # llvm_x lld_x lldb_x clang_x libclang_x   # gcc gdb 
 ]

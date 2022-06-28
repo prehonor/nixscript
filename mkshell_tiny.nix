@@ -1,13 +1,13 @@
 let
   pkgs = import <nixpkgs> {};
 in
-  with pkgs; # with import ./common/pythonlib.nix { python = python3; version = "python3.9"; };
+  with pkgs; # with import ./common/pythonlib_tiny.nix { python = python3; version = "python3.9"; };
   stdenv.mkDerivation rec { 
     
     name = "CLion-env";
 
-    inherit (import ./common/pythonlib.nix { python = python3; version = "python3.9"; }) mypy mypy_v;
-    publibs = import ./common/otherlib.nix { inherit pkgs; };
+    inherit (import ./common/pythonlib_tiny.nix { python = python3; version = "python3.9"; }) mypy mypy_v;
+    publibs = import ./common/otherlib_tiny.nix { inherit pkgs; };
     xlibs = import ./common/xorglib.nix { inherit pkgs; };
     qtlibs = import ./common/qtlib.nix { inherit pkgs; };
     libsforbin = import ./common/bin.nix {inherit pkgs; };
@@ -91,7 +91,7 @@ in
 
 
 
-      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:$HOME/Public/test:${cudaPackages.cudatoolkit}/lib
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:$HOME/Public/test
 
       export LIBCLANG_PATH=${LIBCLANG_PATH}
 
@@ -104,15 +104,6 @@ in
       # autoPatchelf /home/prehonor/.cache/JetBrains/IntelliJIdea2021.2/intellij-rust/lldb/bin
       # autoPatchelf /ah/prehonor/.npm
 
-
-      export CUDA_HOME=${cudaPackages.cudatoolkit}
-      export CUDA_PATH=${cudaPackages.cudatoolkit}
-      export EXTRA_LDFLAGS="-L/lib -L${linuxPackages.nvidia_x11}/lib"
-      export EXTRA_CCFLAGS="-I/usr/include"
-      export PYTHON_LIBRARY=${mypy}/lib
-      export PYTHON_INCLUDE_DIRS=${mypy}/include/${mypy_v}
-      export NCCL_ROOT=${cudaPackages.nccl.dev}
-      export CUDNN_ROOT=${cudaPackages.cudnn}
 
       # export PIP_PREFIX=/home/prehonor/.local/pythonEnvs/pip_packages
       # export PYTHONPATH="$PIP_PREFIX/${python.sitePackages}:$PYTHONPATH"

@@ -1,0 +1,331 @@
+cd /ah/prehonor/haskell-project/lapce
+cargo build --release
+git branch -a
+git tag
+git checkout -b v0010 v0.0.10
+cargo build --release
+export http_proxy=http://127.0.0.1:8889
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+cargo build --release
+export http_proxy=socks5://127.0.0.1:1080
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+cargo build --release
+unset http_proxy
+unset https_proxy
+unset ftp_proxy
+unset all_proxy
+cargo build --release
+cargo build --release
+cargo build --release
+cargo build --release
+cd /ah/prehonor/haskell-project/lapce
+cargo build --release
+export http_proxy=http://127.0.0.1:8889
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+cargo build --release
+cargo build --release
+cd /ah/prehonor/haskell-project/lapce
+cargo build --release
+cargo build --release
+ls
+cd target/
+ls
+cd release/
+ls
+./lapce
+RUST_BACKTRACE=1
+./lapce
+./lapce
+./lapce
+./lapce-proxy 
+./lapce
+export RUST_BACKTRACE=1
+./lapce
+export RUST_BACKTRACE=full
+./lapce
+ldd lapce
+git branch -a
+git checkout master
+cargo build --release
+cd ../..
+git branch -a
+cargo build --release
+cd target/release/
+./lapce
+xauth 
+cd /ah/prehonor/haskell-project/Tau
+clion > /dev/null 2>&1 &
+meson --prefix=/home/prehonor/.local -Dprofile=development build
+cd /ah/prehonor/haskell-project/lapce/target/release
+./lapce
+ros install sbcl
+whereis ros
+cd /ah/prehonor/haskell-project/evince/
+ls
+mkdir build
+cd build
+meson --prefix=/home/prehonor/.local             --buildtype=release       -Dgtk_doc=false           -Dsystemduserunitdir=no .. && ninja
+cd ..
+git tag
+git checkout -b v41.3 41.3
+cmake /home/prehonor/.cache/gnome-builder/projects/evince/builds/default-host-x86_64-v41.3/meson-private/cmake_gdk-pixbuf-2.0
+rustup update
+rustup --version
+ldd /home/prehonor/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/libLLVM-14-rust-1.62.0-nightly.so
+cd ~/CLionProjects/shadowsocks-qt5/build
+cmake ..
+cd /gh/prehonor/gitproject/libQtShadowsocks-2.1.0
+cd build
+cmake ..
+cmake clean ..
+cmake ..
+echo $GOPATH
+cd /home/prehonor/CLionProjects/
+git clone https://github.com/Dreamacro/clash.git
+cd clash/
+go build 
+go mod download
+go build 
+go build .
+go install github.com/Dreamacro/clash@latest
+export http_proxy=socks5://127.0.0.1:1080
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+go install github.com/Dreamacro/clash@latest
+go build -o ./build/clash -trimpath -ldflags "-s -w -buildid=" .
+go build -o ./build/clash -trimpath -ldflags "-s -w -buildid=" .
+cd /home/prehonor/Downloads/test/clion-2022.1/bin/gdb/linux/lib
+cd python3.8/
+cd lib-dynload/
+ldd _ssl.cpython-38-x86_64-linux-gnu.so
+ldd _hashlib.cpython-38-x86_64-linux-gnu.so
+ldd _lzma.cpython-38-x86_64-linux-gnu.so
+cd ..
+cd ..
+autoPatchelf python3.8/lib-dynload/
+autoPatchelf python3.8/lib-dynload/
+autoPatchelf python3.8/lib-dynload/
+cd /home/prehonor/CLionProjects/clash
+idea-ultimate > /dev/null 2>&1 &
+cd /home/prehonor/Downloads
+wine u.exe 
+cd ~/Public/Program/geph
+autoPatchelf gephgui4 
+autoPatchelf gephgui4 
+nix-shell /home/prehonor/Documents/Script/nixscript/mkshell.nix
+autoPatchelf gephgui4 
+nix-shell /home/prehonor/Documents/Script/nixscript/mkshell.nix
+cd /gh/prehonor/unity/2022.1.3f1c1/Editor
+autoPatchelf .
+cd /gh/prehonor/unity/2022.1.3f1c1/Editor
+autoPatchelf ./Data/il2cpp/build/deploy/libcoreclrtraceptprovider.so
+patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" /home/prehonor/.dotnet/tools/uno-check
+ldd /home/prehonor/.dotnet/tools/uno-check
+cd /home/prehonor/.dotnet/tools/
+./uno-check pre
+./uno-check --pre
+./botsay 
+./botsay 
+dotnet --info
+echo $CMAKE_LIBRARY_PATH
+clion > /dev/null 2>&1 &
+cd ~/CLionProjects/trojan/build
+cmake  -DCMAKE_INSTALL_PREFIX=/home/prehonor/.local ..
+cmake  -DCMAKE_INSTALL_PREFIX=/home/prehonor/.local ..
+echo $PKG_CONFIG_PATH
+echo $NIX_LDFLAGS
+cd ~/CLionProjects/trojan/build
+cmake  -DCMAKE_INSTALL_PREFIX=/home/prehonor/.local ..
+make
+clion > /dev/null 2>&1 &
+echo $NIX_LDFLAGS
+echo $PKG_CONFIG_PATH
+make
+cmake  -DCMAKE_INSTALL_PREFIX=/home/prehonor/.local ..
+ls
+cmake  -DCMAKE_INSTALL_PREFIX=/home/prehonor/.local ..
+make
+cd ~/CLionProjects/trojan/build
+make
+clion > /dev/null 2>&1 &
+cd ~/CLionProjects/trojan/build
+make
+trojan --help
+./trojan --help
+./trojan -v
+./trojan client.json 
+clion > /dev/null 2>&1 &
+./trojan client.json 
+trojan /home/prehonor/CLionProjects/trojan/client.json
+cd /home/prehonor/CLionProjects/shadowsocks-libev/
+sh autogen.sh 
+./configure --prefix=/home/prehonor/.local/usr
+ss-local -c /home/prehonor/CLionProjects/shadowsocks-libev/build/config.json
+ss-local -c /home/prehonor/CLionProjects/shadowsocks-libev/build/config.json
+ls
+cd build/
+ls
+rm -rf *
+cmake -DCMAKE_INSTALL_PREFIX=~/.local/usr ..
+make
+rm -rf *
+cmake -DCMAKE_INSTALL_PREFIX=~/.local ..
+make
+make install
+ss-local -c /home/prehonor/CLionProjects/shadowsocks-libev/build/config.json
+cd ~
+~/doom-emacs/bin/doom install
+~/doom-emacs/bin/doom install
+export http_proxy=socks5://127.0.0.1:1080
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+~/doom-emacs/bin/doom install
+~/doom-emacs/bin/doom install
+doom upgrade
+~/doom-emacs/bin/doom update straight-pull-recipe-repositories
+~/doom-emacs/bin/doom update 
+~/doom-emacs/bin/doom sync -u
+export http_proxy=http://127.0.0.1:8889
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+~/doom-emacs/bin/doom install
+git clone --depth 1 https://github.com/hlissner/doom-emacs ~/doom-emacs
+doom install
+doom sync
+doom sync
+doom sync
+systemctl --user restart emacs.service 
+systemctl --user status emacs.service 
+systemctl --user stop emacs.service 
+doom sync
+doom sync
+export http_proxy=socks5://127.0.0.1:1080
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+doom sync
+sbcl
+sbcl
+clion > /dev/null 2>&1 &
+rustup update
+patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" /home/prehonor/.local/bin/ssr-client
+idea-ultimate > /dev/null 2>&1 &
+whereis python
+idea-ultimate > /dev/null 2>&1 &
+whereis python
+whereis python
+/gh/prehonor/pythonEnvs/spider/bin/python -v
+readlink -f /gh/prehonor/pythonEnvs/spider/bin/python
+cd /nix/store/wl02plhc6zf84m6x9984l42wnnnbly5m-python3-3.9.6/
+cd /gh/prehonor/pythonEnvs/
+rm -rf spider/
+ls
+virtualenv venv
+python -m venv .venv
+python -m venv spider
+whereis python
+readlink -f /gh/prehonor/pythonEnvs/spider/bin/python
+whereis python
+/gh/prehonor/pythonEnvs/spider/bin/python -v
+python testgtk.py 
+idea-ultimate > /dev/null 2>&1 &
+python fildem/appmenu.py 
+whereis python
+spyder 
+cd /home/prehonor/Downloads/
+unzip wayfire.zip -d wayfire
+nix hash file --base16 --type sha256 wayfire-0.7.3.tar.xz 
+nix hash file --base32 --type sha256 wayfire-0.7.3.tar.xz 
+amixer set Master 5%+
+amixer set Master 5%+
+amixer set Master 5%+
+amixer set Master 5%+
+amixer set Master 5%+
+amixer set Master 5%+
+amixer set Master 5%+
+amixer set Master 5%+
+cd .config/
+touch wf-shell.ini
+ls
+cd CLionProjects/
+git clone --depth 1 git@github.com:IgnorantGuru/spacefm.git
+ps aux | grep -i 'fcitx'
+cd ~/CLionProjects/spacefm-1.0.6
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+cd ~/CLionProjects/spacefm-1.0.6
+cd ~/CLionProjects/spacefm-1.0.6
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+cd ~/CLionProjects/spacefm-1.0.6
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+make
+make -Wno-error
+CFLAGS='-ggdb3 -Wno-error' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+make
+make CFLAGS="-Wno-error=format-truncation"
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+make
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+make
+make CFLAGS="-Wno-error=format-truncation"
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+cd ..
+cd spacefm-1.0.6/
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+make
+make
+make
+make
+make CFLAGS="-Wno-error=format-truncation"
+make CFLAGS="-Wno-error=format-truncation"
+cd ~/CLionProjects/spacefm-1.0.6
+make CFLAGS="-Wno-error=format-truncation"
+CFLAGS='-ggdb3' STRIP='!strip' ./configure --prefix=/home/prehonor/.local/usr
+make CFLAGS="-Wno-error=format-truncation"
+ssr-client -c /home/prehonor/Documents/config_ssr.json
+top -d 1
+cd Downloads/
+dpkg-deb -x peazip_8.6.0.LINUX.Qt5-1_amd64.deb ./lib
+cd /home/prehonor/Public/Program/peazip
+ldd pea
+ldd peazip 
+patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" peazip 
+ldd pea
+patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" pea
+autoPatchelf peazip
+./peazip 
+./peazip 
+cd ~/Public/Program/peazip
+patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" libQt5Pas.so.1 
+./peazip 
+./pea
+./peazip 
+cd /home/prehonor/Public/Program/peazip
+ldd peazip 
+./peazip 
+autoPatchelf .
+ls
+autoPatchelf *
+pip install werkzeug==2.0.0
+cd CLionProjects/
+git clone https://github.com/eranif/codelite.git
+cd codelite/
+git submodule update --init
+cd ~/CLionProjects/codelite
+mkdir build-release
+rm -rf build-release/
+mkdir build
+cd build/
+cmake -DCMAKE_BUILD_TYPE=Release .. -DCOPY_WX_LIBS=1
+cmake -DCMAKE_BUILD_TYPE=Release .. 

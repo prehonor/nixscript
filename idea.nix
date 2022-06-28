@@ -6,12 +6,11 @@ mkShell rec {
   buildInputs = [
     jetbrains.jdk
     rustup
-    bubblewrap
-    lsb-release
-    libselinux
     coreutils
-    toybox
-    hwinfo
+    libGL
+    freetype
+    mupdf
+    vte
   ];
   
   ld = lib.makeLibraryPath ([
@@ -27,7 +26,7 @@ mkShell rec {
 
 
   shellHook = ''
-    export tt=${host}
+    export tt=${vte.dev}
     export ANDROID_HOME="/gh/prehonor/Android/Sdk"
     export MAVEN_OPTS='-Xms300m -Xmx300m'
 

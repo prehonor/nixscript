@@ -1,9 +1,9 @@
 let 
 	pkgs = import <nixpkgs> {};
 
-	inherit (import ./common/pythonlib.nix { python = pkgs.python3; version = "python3.9"; }) mypy mypy_v;
+	inherit (import ./common/pythonlib_tiny.nix { python = pkgs.python3; version = "python3.9"; }) mypy mypy_v;
 
-	publibs = import ./common/otherlib.nix { inherit pkgs; };
+	publibs = import ./common/otherlib_tiny.nix { inherit pkgs; };
 	xlibs = import ./common/xorglib.nix { inherit pkgs; };
 	qtlibs = import ./common/qtlib.nix { inherit pkgs; };
 	libsforbin = import ./common/bin.nix {inherit pkgs; };
@@ -21,6 +21,7 @@ let
 	buildInputs = [
       mypy
 			dotnet-combined
+      pkgs.autoPatchelfHook
     ] ++ publibs ++ xlibs ++ qtlibs;
 
 
@@ -77,9 +78,9 @@ let
 
 			export PATH="$HOME/.local/bin":"$HOME/.local/usr/bin":"/ah/prehonor/.npm/bin:/gh/prehonor/gitproject/wasmtime/target/debug:/gh/prehonor/gitproject/vcpkg":$PATH
 
-			export PATH=$PATH:/home/prehonor/.roswell/bin  # lem 一个 lisp IDE
+			export PATH=$PATH:${LibsBinPath}  # ocmal环境
 
-			# export PATH=$PATH:${LibsBinPath} # ocmal环境
+			export PATH=$PATH:/home/prehonor/.roswell/bin  # lem 一个 lisp IDE
 
 			export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH" # haskell环境
 
@@ -105,7 +106,7 @@ let
 	      	export PATH=$PATH:"$(rustc --print sysroot)/bin/":"$CARGO_HOME/bin"
 
 
-	      	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:/home/prehonor/Public/test:${cudaPackages.cudatoolkit}/lib
+	      	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ld}:/home/prehonor/Public/test
 
 	      	export LIBCLANG_PATH=${LIBCLANG_PATH}
 
@@ -119,14 +120,6 @@ let
 	      	# autoPatchelf /ah/prehonor/.npm
 
 
-	     	export CUDA_HOME=${cudaPackages.cudatoolkit}
-	      	export CUDA_PATH=${cudaPackages.cudatoolkit}
-	      	export EXTRA_LDFLAGS="-L/lib -L${linuxPackages.nvidia_x11}/lib"
-	      	export EXTRA_CCFLAGS="-I/usr/include"
-	      	export PYTHON_LIBRARY=${mypy}/lib
-	      	export PYTHON_INCLUDE_DIRS=${mypy}/include/${mypy_v}
-	      	export NCCL_ROOT=${cudaPackages.nccl.dev}
-	      	export CUDNN_ROOT=${cudaPackages.cudnn}
 
 	      	# export PIP_PREFIX=/home/prehonor/.local/pythonEnvs/pip_packages
 	      	# export PYTHONPATH="$PIP_PREFIX/${python.sitePackages}:$PYTHONPATH"

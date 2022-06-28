@@ -41,7 +41,6 @@ with pkgs.libsForQt5;
   # qt5.qtwebkit 
   # qt5.qtdeclarative
   kproperty 
-  # qt5.qtsensors 
   qt5.qtgamepad 
   qt5.qtserialbus
   qt5.qtnetworkauth

@@ -1,6 +1,7 @@
 {pkgs}:
 with pkgs.xorg;
 [
+    libX11
 	libICE
 	libXrender 
 	libXtst 
@@ -10,7 +11,7 @@ with pkgs.xorg;
 	libXi 
 	libXmu 
 	libXext 
-	libX11 
+	libX11.dev
 	libXv 
 	libXrandr
     libxcb 

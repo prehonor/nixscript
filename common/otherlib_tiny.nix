@@ -2,24 +2,12 @@
 with pkgs;
 [
 
-   linuxPackages.nvidia_x11			# X.org driver and kernel module for NVIDIA graphics cards 
-   cudaPackages.cudatoolkit		# A compiler for NVIDIA GPUs, math libraries, and tools
-   cudaPackages.cudnn				# NVIDIA CUDA Deep Neural Network library (cuDNN)
-   cudaPackages.nccl				# Multi-GPU and multi-node collective communication primitives for NVIDIA GPUs
 
-   
    mysql80			# The world's most popular open source database
    ocrmypdf			# Adds an OCR text layer to scanned PDF files, allowing them to be searched
    electron       # Cross platform desktop application shell
    mupdf.dev      # Lightweight PDF, XPS, and E-book viewer and toolkit written in portable C
    ghostscript    # PostScript interpreter (mainline version)
-   desktop-file-utils # Command line utilities for working with .desktop files
-   shared-mime-info  # A database of common MIME types
-   intltool       # Translation helper tool
-   ffmpegthumbnailer # A lightweight video thumbnailer
-   udisks         # A daemon, tools and libraries to access and manipulate disks, storage devices and technologies
-   jmtpfs         # A FUSE filesystem for MTP devices like Android phones
-   gettext
 
    ncurses5			# Free software emulation of curses in SVR4 and more 
    ncurses.dev    # Free software emulation of curses in SVR4 and more
@@ -66,7 +54,7 @@ with pkgs;
    gtksourceview.dev   # Source code editing widget for GTK
    gnome2.gtksourceview
    # gtk-mac-integration # Provides integration for GTK applications into the Mac desktop
-   wxGTK31-gtk3      # A Cross-Platform C++ GUI Library
+   wxGTK               # A Cross-Platform C++ GUI Library
    webkitgtk.dev       # Web content rendering engine, GTK port
 
    systemd				# A system and service manager for Linux
@@ -104,7 +92,6 @@ with pkgs;
    libmysqlclient			# Client library that can be used to connect to MySQL or MariaDB 
    libmysqlconnectorcpp	# C++ library for connecting to mysql servers
    libpqxx              # A C++ library to access PostgreSQL databases
-   libfm                # A glib-based library for file management
    openssl.dev				# A cryptographic library that implements the SSL and TLS protocols
    libxml2					# An XML parsing library for C
    libxslt					# A C library and tools to do XSL transformations
@@ -157,7 +144,7 @@ with pkgs;
    libuv             # A multi-platform support library with a focus on asynchronous I/O
    tree-sitter       # A parser generator tool and an incremental parsing library
    xxHash            # Extremely fast hash algorithm
-   udev           # 没找到
+   # udev           # 没找到
    # dbus_glib      # 没找到
    libfakeXinerama               # fakeXinerama for Xpra
    gst_all_1.gst-plugins-base    # Base GStreamer plug-ins and helper libraries
@@ -176,5 +163,4 @@ with pkgs;
    # xorriso grub2 qemu
 
    # libudev0-shim libgcrypt libgudev e2fsprogs SDL2
-   libxkbcommon
 ]
