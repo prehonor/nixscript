@@ -329,3 +329,20 @@ mkdir build
 cd build/
 cmake -DCMAKE_BUILD_TYPE=Release .. -DCOPY_WX_LIBS=1
 cmake -DCMAKE_BUILD_TYPE=Release .. 
+python -m venv spider
+cd /home/prehonor/.local/bin/
+patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" ssr-client 
+doom --help
+doom sync
+doom sync
+cd ~/CLionProjects/trojan-go/
+make
+make
+cd ~/CLionProjects/trojan-go/
+make
+cd build/
+./trojan-go --help
+cd ../..
+git clone git@github.com:shadowsocks/shadowsocks-rust.git
+rustup update
+$(echo $PATH | sed 's/:/\n/g' | sort | uniq | tr -s '\n' ':' | sed 's/:$//g')

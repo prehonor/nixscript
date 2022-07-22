@@ -1,0 +1,217 @@
+From 28b28a3f1c334ba4a2c3e1314245cc876b4335d2 Mon Sep 17 00:00:00 2001
+From: prehonor <ryx19891207@gmail.com>
+Date: Tue, 5 Jul 2022 10:59:51 +0800
+Subject: [PATCH 2/5] box patch
+
+---
+ 0001-patch.patch           | 46 ++++++++++++++++++++++++++++++++++++++
+ src/core/output-layout.cpp | 14 +++++++-----
+ src/output/output.cpp      |  9 ++++----
+ src/view/xdg-shell.cpp     | 23 +++++++++----------
+ upgrade wlroots            |  1 +
+ 5 files changed, 71 insertions(+), 22 deletions(-)
+ create mode 100644 0001-patch.patch
+ create mode 100644 upgrade wlroots
+
+diff --git a/0001-patch.patch b/0001-patch.patch
+new file mode 100644
+index 0000000..c7852c2
+--- /dev/null
++++ b/0001-patch.patch
+@@ -0,0 +1,46 @@
++From b55fb9480256f7f6ab811bd720dcfeadd2b3b96c Mon Sep 17 00:00:00 2001
++From: prehonor <ryx19891207@gmail.com>
++Date: Tue, 5 Jul 2022 08:01:08 +0800
++Subject: [PATCH] patch
++
++---
++ meson.build                             | 2 +-
++ src/api/wayfire/nonstd/wlroots-full.hpp | 2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/meson.build b/meson.build
++index 7ffb482..31c4dae 100644
++--- a/meson.build
+++++ b/meson.build
++@@ -31,7 +31,7 @@ pixman         = dependency('pixman-1')
++ threads        = dependency('threads')
++ xkbcommon      = dependency('xkbcommon')
++ libdl          = meson.get_compiler('cpp').find_library('dl')
++-wlroots        = dependency('wlroots', version: ['>=0.15.0', '<0.16.0'], required: get_option('use_system_wlroots'))
+++wlroots        = dependency('wlroots', version: ['>=0.16.0', '<0.17.0'], required: get_option('use_system_wlroots'))
++ wfconfig       = dependency('wf-config', version: ['>=0.8.0', '<0.9.0'], required: get_option('use_system_wfconfig'))
++ 
++ use_system_wlroots = not get_option('use_system_wlroots').disabled() and wlroots.found()
++diff --git a/src/api/wayfire/nonstd/wlroots-full.hpp b/src/api/wayfire/nonstd/wlroots-full.hpp
++index 96ea12a..b72ab51 100644
++--- a/src/api/wayfire/nonstd/wlroots-full.hpp
+++++ b/src/api/wayfire/nonstd/wlroots-full.hpp
++@@ -23,6 +23,7 @@ extern "C"
++ // Rendering
++ #define static
++ #include <wlr/types/wlr_compositor.h>
+++#include <wlr/types/wlr_subcompositor.h>
++ #include <wlr/render/wlr_renderer.h>
++ #include <wlr/render/allocator.h>
++ #include <wlr/render/gles2.h>
++@@ -43,7 +44,6 @@ extern "C"
++     #include <wlr/types/wlr_xdg_shell.h>
++     #include <wlr/types/wlr_xdg_decoration_v1.h>
++ #endif
++-#include <wlr/types/wlr_surface.h>
++ 
++ #include <wlr/types/wlr_foreign_toplevel_management_v1.h>
++ #include <wlr/types/wlr_server_decoration.h>
++-- 
++2.36.0
++
+diff --git a/src/core/output-layout.cpp b/src/core/output-layout.cpp
+index 732bda8..1efcb71 100644
+--- a/src/core/output-layout.cpp
++++ b/src/core/output-layout.cpp
+@@ -1423,8 +1423,9 @@ class output_layout_t::impl
+                 wlr_output_layout_add_auto(output_layout, handle);
+ 
+                 /* Get the correct position */
+-                auto box = wlr_output_layout_get_box(output_layout, handle);
+-                assert(box);
++                wlr_box box;
++                wlr_output_layout_get_box(output_layout, handle, &box);
++                assert(!wlr_box_empty(&box));
+                 lo->apply_state(state);
+             }
+         }
+@@ -1473,11 +1474,12 @@ class output_layout_t::impl
+             auto head = wlr_output_configuration_head_v1_create(
+                 wlr_configuration, output.first);
+ 
+-            auto box = wlr_output_layout_get_box(output_layout, output.first);
+-            if (box)
++            wlr_box box;
++            wlr_output_layout_get_box(output_layout, output.first, &box);
++            if (!wlr_box_empty(&box))
+             {
+-                head->state.x = box->x;
+-                head->state.y = box->y;
++                head->state.x = box.x;
++                head->state.y = box.y;
+             }
+         }
+ 
+diff --git a/src/output/output.cpp b/src/output/output.cpp
+index 3c8fa93..f8eaf2a 100644
+--- a/src/output/output.cpp
++++ b/src/output/output.cpp
+@@ -163,11 +163,12 @@ wf::geometry_t wf::output_t::get_relative_geometry() const
+ 
+ wf::geometry_t wf::output_t::get_layout_geometry() const
+ {
+-    auto box = wlr_output_layout_get_box(
+-        wf::get_core().output_layout->get_handle(), handle);
+-    if (box)
++    wlr_box box;
++    wlr_output_layout_get_box(
++        wf::get_core().output_layout->get_handle(), handle, &box);
++    if (!wlr_box_empty(&box))
+     {
+-        return *box;
++        return box;
+     } else
+     {
+         LOGE("Get layout geometry for an invalid output!");
+diff --git a/src/view/xdg-shell.cpp b/src/view/xdg-shell.cpp
+index 67deb3e..c3abbfc 100644
+--- a/src/view/xdg-shell.cpp
++++ b/src/view/xdg-shell.cpp
+@@ -165,7 +165,7 @@ void wayfire_xdg_popup::close()
+     {
+         if (is_mapped())
+         {
+-            wlr_xdg_popup_destroy(popup->base);
++            wlr_xdg_popup_destroy(popup);
+         }
+     });
+ }
+@@ -241,7 +241,7 @@ void wayfire_xdg_view::initialize()
+     on_set_parent.set_callback([&] (void*)
+     {
+         auto parent = xdg_toplevel->parent ?
+-            wf::wf_view_from_void(xdg_toplevel->parent->data)->self() : nullptr;
++            wf::wf_view_from_void(xdg_toplevel->parent->base->data)->self() : nullptr;
+         set_toplevel_parent(parent);
+     });
+     on_ping_timeout.set_callback([&] (void*)
+@@ -263,9 +263,8 @@ void wayfire_xdg_view::initialize()
+     });
+     on_request_fullscreen.set_callback([&] (void *data)
+     {
+-        auto ev = static_cast<wlr_xdg_toplevel_set_fullscreen_event*>(data);
+-        auto wo = wf::get_core().output_layout->find_output(ev->output);
+-        fullscreen_request(wo, ev->fullscreen);
++        auto wo = wf::get_core().output_layout->find_output(xdg_toplevel->requested.fullscreen_output);
++        fullscreen_request(wo, xdg_toplevel->requested.fullscreen);
+     });
+ 
+     on_map.connect(&xdg_toplevel->base->events.map);
+@@ -381,14 +380,14 @@ void wayfire_xdg_view::set_activated(bool act)
+     }
+ 
+     last_configure_serial =
+-        wlr_xdg_toplevel_set_activated(xdg_toplevel->base, act);
++        wlr_xdg_toplevel_set_activated(xdg_toplevel, act);
+     wf::wlr_view_t::set_activated(act);
+ }
+ 
+ void wayfire_xdg_view::set_tiled(uint32_t edges)
+ {
+-    wlr_xdg_toplevel_set_tiled(xdg_toplevel->base, edges);
+-    last_configure_serial = wlr_xdg_toplevel_set_maximized(xdg_toplevel->base,
++    wlr_xdg_toplevel_set_tiled(xdg_toplevel, edges);
++    last_configure_serial = wlr_xdg_toplevel_set_maximized(xdg_toplevel,
+         (edges == wf::TILED_EDGES_ALL));
+     wlr_view_t::set_tiled(edges);
+ }
+@@ -397,7 +396,7 @@ void wayfire_xdg_view::set_fullscreen(bool full)
+ {
+     wf::wlr_view_t::set_fullscreen(full);
+     last_configure_serial =
+-        wlr_xdg_toplevel_set_fullscreen(xdg_toplevel->base, full);
++        wlr_xdg_toplevel_set_fullscreen(xdg_toplevel, full);
+ }
+ 
+ void wayfire_xdg_view::resize(int w, int h)
+@@ -413,21 +412,21 @@ void wayfire_xdg_view::resize(int w, int h)
+     {
+         this->last_size_request = {w, h};
+         last_configure_serial   =
+-            wlr_xdg_toplevel_set_size(xdg_toplevel->base, w, h);
++            wlr_xdg_toplevel_set_size(xdg_toplevel, w, h);
+     }
+ }
+ 
+ void wayfire_xdg_view::request_native_size()
+ {
+     last_configure_serial =
+-        wlr_xdg_toplevel_set_size(xdg_toplevel->base, 0, 0);
++        wlr_xdg_toplevel_set_size(xdg_toplevel, 0, 0);
+ }
+ 
+ void wayfire_xdg_view::close()
+ {
+     if (xdg_toplevel)
+     {
+-        wlr_xdg_toplevel_send_close(xdg_toplevel->base);
++        wlr_xdg_toplevel_send_close(xdg_toplevel);
+         wf::wlr_view_t::close();
+     }
+ }
+diff --git a/upgrade wlroots b/upgrade wlroots
+new file mode 100644
+index 0000000..36bf9e4
+--- /dev/null
++++ b/upgrade wlroots	
+@@ -0,0 +1 @@
++0001-patch.patch
+-- 
+2.36.0
+

@@ -1,0 +1,46 @@
+From b55fb9480256f7f6ab811bd720dcfeadd2b3b96c Mon Sep 17 00:00:00 2001
+From: prehonor <ryx19891207@gmail.com>
+Date: Tue, 5 Jul 2022 08:01:08 +0800
+Subject: [PATCH 1/5] patch
+
+---
+ meson.build                             | 2 +-
+ src/api/wayfire/nonstd/wlroots-full.hpp | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 7ffb482..31c4dae 100644
+--- a/meson.build
++++ b/meson.build
+@@ -31,7 +31,7 @@ pixman         = dependency('pixman-1')
+ threads        = dependency('threads')
+ xkbcommon      = dependency('xkbcommon')
+ libdl          = meson.get_compiler('cpp').find_library('dl')
+-wlroots        = dependency('wlroots', version: ['>=0.15.0', '<0.16.0'], required: get_option('use_system_wlroots'))
++wlroots        = dependency('wlroots', version: ['>=0.16.0', '<0.17.0'], required: get_option('use_system_wlroots'))
+ wfconfig       = dependency('wf-config', version: ['>=0.8.0', '<0.9.0'], required: get_option('use_system_wfconfig'))
+ 
+ use_system_wlroots = not get_option('use_system_wlroots').disabled() and wlroots.found()
+diff --git a/src/api/wayfire/nonstd/wlroots-full.hpp b/src/api/wayfire/nonstd/wlroots-full.hpp
+index 96ea12a..b72ab51 100644
+--- a/src/api/wayfire/nonstd/wlroots-full.hpp
++++ b/src/api/wayfire/nonstd/wlroots-full.hpp
+@@ -23,6 +23,7 @@ extern "C"
+ // Rendering
+ #define static
+ #include <wlr/types/wlr_compositor.h>
++#include <wlr/types/wlr_subcompositor.h>
+ #include <wlr/render/wlr_renderer.h>
+ #include <wlr/render/allocator.h>
+ #include <wlr/render/gles2.h>
+@@ -43,7 +44,6 @@ extern "C"
+     #include <wlr/types/wlr_xdg_shell.h>
+     #include <wlr/types/wlr_xdg_decoration_v1.h>
+ #endif
+-#include <wlr/types/wlr_surface.h>
+ 
+ #include <wlr/types/wlr_foreign_toplevel_management_v1.h>
+ #include <wlr/types/wlr_server_decoration.h>
+-- 
+2.36.0
+

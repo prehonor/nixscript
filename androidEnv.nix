@@ -1,17 +1,12 @@
-with import <nixpkgs> {}; 
+with import <nixpkgs> { };
 mkShell rec {
   name = "react-native";
-  
-  buildInputs = [
-    jdk11
-    fontconfig
-    glibc
-  ];
 
-  ld = stdenv.lib.makeLibraryPath ([
-      stdenv.cc.cc.lib stdenv.cc.libc zlib
-  ]);
-  GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=/gh/prehonor/Android/Sdk/build-tools/28.0.3/aapt2";
+  buildInputs = [ jdk11 fontconfig glibc ];
+
+  ld = stdenv.lib.makeLibraryPath ([ stdenv.cc.cc.lib stdenv.cc.libc zlib ]);
+  GRADLE_OPTS =
+    "-Dorg.gradle.project.android.aapt2FromMavenOverride=/gh/prehonor/Android/Sdk/build-tools/28.0.3/aapt2";
 
   shellHook = ''
     interp="$(cat $NIX_CC/nix-support/dynamic-linker)"
@@ -23,7 +18,7 @@ mkShell rec {
     unset http_proxy
     unset https_proxy
     # find /gh/prehonor/Android/Sdk/platform-tools/ -type f -perm -0100 -exec patchelf --interpreter $interp {} \;
-    '';
-    
+  '';
+
 }
 
