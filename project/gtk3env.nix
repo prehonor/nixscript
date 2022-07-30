@@ -1,6 +1,6 @@
 with import <nixpkgs> {}; 
 mkShell rec {
-  name = "pcmanfmnix";
+  name = "gtk3env";
   withGtk3 = true;
   libfm' = libfm.override { inherit withGtk3; };
   buildInputs = [
@@ -10,7 +10,6 @@ mkShell rec {
   nativeBuildInputs = [ cmake pkg-config gnumake meson ninja ];
  
   shellHook = ''
-
     '';
     
 }

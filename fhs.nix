@@ -166,7 +166,7 @@ let
 
         source /home/prehonor/.local/pythonEnvs/spider/bin/activate
         eval $(opam env) # 必要的opam环境设置
-        export PATH=$(echo $PATH|sed 's/:/\n/g'|sort|uniq|tr -s '\n' ':'|sed 's/:$//g')
+
 
       '';
 

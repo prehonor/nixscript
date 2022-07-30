@@ -89,7 +89,7 @@ with pkgs;
     opencv # Open Computer Vision Library with more than 500 algorithms
     ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video
     libselinux # SELinux core library
-    libclang_x # A C language family frontend for LLVM
+    libclang # A C language family frontend for LLVM
     libpulseaudio # Sound server for POSIX and Win32 systems
     nspr # Netscape Portable Runtime, a platform-neutral API for system-level and libc-like functions
     nss # A set of libraries for development of security-enabled client and server applications

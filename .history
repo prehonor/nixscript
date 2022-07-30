@@ -346,3 +346,117 @@ cd ../..
 git clone git@github.com:shadowsocks/shadowsocks-rust.git
 rustup update
 $(echo $PATH | sed 's/:/\n/g' | sort | uniq | tr -s '\n' ':' | sed 's/:$//g')
+cd /gh/prehonor/gitproject/v2ray-core
+git pull
+git branch -a
+git checkout master
+git branch -d lates
+git branch -d latest
+git branch -D latest
+git checkout -b latest v4.45.2
+CGO_ENABLED=0 go build -o /gh/prehonor/gitproject/v2ray-core/build/v2ray -trimpath -ldflags "-s -w -buildid=" ./main
+CGO_ENABLED=0 go build -o /gh/prehonor/gitproject/v2ray-core/build/v2ctl -trimpath -ldflags "-s -w -buildid=" -tags confonly ./infra/control/main
+cd build/
+wget https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat
+cd ~/CLionProjects/trojan-go/
+cd build/
+./trojan-go --version
+cd ../..
+cd shadowsocks-rust/
+cargo build --release
+cargo build --release
+cargo build --release
+export http_proxy=socks5://127.0.0.1:1080
+export https_proxy=$http_proxy
+export ftp_proxy=$http_proxy
+export all_proxy=$http_proxy
+cargo build --release
+export CARGO_NET_GIT_FETCH_WITH_CLI=true
+cargo build --release
+cargo build --release
+cargo build --release
+cargo build --release
+cargo build --release
+cargo build --release
+make install TARGET=release
+cargo build --release
+make install TARGET=release
+cargo build --release
+ls \OME
+cd ~
+cd /
+cd -
+cd -
+cd -
+cd -
+cd ~/CLionProjects/shadowsocks-rust
+cargo build --release
+make install TARGET=release
+cd ../shadowsocksr-native/
+git pull
+cd build/
+ls
+rm -rf *
+cmake ..
+make 
+cd ..
+git branches
+git branch -a
+git submodule update --init
+git submodule foreach -q 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master)'
+git pull
+cd build/
+cmake ..
+make 
+cd ..
+cd depends/libuv/
+git branch -a
+git checkout master remotes/origin/master
+git pull
+cd ../..
+git pull --recurse-submodules
+git pull --recurse-submodules
+git pull --recurse-submodules
+cd build/
+make 
+cd ..
+cd depends/libuv/
+git branch -a
+git pull
+cd ..
+ls
+cd cstl/
+git pull
+git branch -a
+cd ..
+cd http-parser/
+git pull
+cd ..
+cd json-c/
+git pull
+cd ..
+cd libbloom/
+git pull
+cd ..
+cd libsodium/
+git pull
+cd ..
+cd mbedtls/
+git pull
+cd ..
+cd uri-encode/
+git pull
+cd ..
+cd uv-mbed/
+git pull
+cd ../../build/
+cmake ..
+make 
+cargo install shadowsocks-gtk-rs
+ssgtk
+ssgtkctl 
+ssgtk
+spyder 
+spyder 
+spyder 
+spyder 
