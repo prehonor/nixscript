@@ -16,7 +16,7 @@ let
         nettools
         # For nixos < 19.03, use `androidenv.platformTools`
         #       androidenv.androidPkgs_9_0.platform-tools
-        jdk11
+        jdk
         schedtool
         utillinux
         m4

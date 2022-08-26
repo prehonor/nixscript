@@ -38,7 +38,7 @@ with pkgs;
     file # A program that shows the type of files
     openexr # A high dynamic-range (HDR) image file format
     # spyder
-    jdk11 # The open-source Java Development Kit
+    jdk # The open-source Java Development Kit
     # dotnet-sdk     # .NET SDK 6.0.100
     # dotnet-sdk_5   # .NET SDK 5.0.403
     perl # The standard implementation of the Perl 5 programmming language

@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
   buildInputs = [
 
      # openjfx11
-   # jdk11 
+   # jdk
    gtk2 gtk3 webkitgtk gdk-pixbuf cairo pango
    atk 
     perl
@@ -73,8 +73,8 @@ stdenv.mkDerivation rec {
     export MAVEN_OPTS='-Xms300m -Xmx300m'
 
 
-    export JAVA_CPPFLAGS=-I${jdk11}/include/
-    export JAVA_HOME=${jdk11.home}
+    export JAVA_CPPFLAGS=-I${jdk}/include/
+    export JAVA_HOME=${jdk.home}
     export ANT_HOME="/ah/prehonor/Programmers/apache-ant-1.10.8"
 
 

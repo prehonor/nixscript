@@ -460,3 +460,29 @@ spyder
 spyder 
 spyder 
 spyder 
+sbcl 
+ecl
+cd ~/Downloads/JetBrains\ Rider-2022.2/
+autoPatchelf .
+ldd /home/prehonor/Downloads/JetBrains\ Rider-2022.2/lib/pty4j-native/linux/x86-64/libpty.so 
+cd /ah/prehonor/java-project/ja-netfilter
+idea-ultimate >/dev/null 2>&1 &
+whereis jdk
+cd ~/Public/Program/baidunetdisk
+patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" baidunetdisk
+autoPatchelf baidunetdisk
+ldd baidunetdisk
+./baidunetdisk 
+clion >/dev/null 2>&1 &
+clion >/dev/null 2>&1 &
+doom sync
+cd ~/Downloads/WindTerm_2.5.0
+ldd WindTerm 
+./WindTerm
+chmod 777 WindTerm 
+./WindTerm
+cd ~/Downloads/WindTerm_2.5.0
+./WindTerm
+ldd WindTerm 
+cd ~/Downloads/WindTerm_2.5.0
+ldd WindTerm 

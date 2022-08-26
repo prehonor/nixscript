@@ -4,7 +4,7 @@ mkShell rec {
   name = "python3_env";
   python3 = python3.withPackages(ps: with ps; [ pip urllib3 ]);
   
-  rJava = [ pkgs.zlib pkgs.bzip2.dev pkgs.icu pkgs.lzma.dev pkgs.pcre.dev pkgs.jdk11 pkgs.libzip ];
+  rJava = [ pkgs.zlib pkgs.bzip2.dev pkgs.icu pkgs.lzma.dev pkgs.pcre.dev pkgs.jdk pkgs.libzip ];
   buildInputs = [
     python3
   #  pkgconfig
@@ -23,8 +23,8 @@ mkShell rec {
   export PYTHONPATH="$PIP_PREFIX/${python3.sitePackages}:$PYTHONPATH"
   
 	export LD_LIBRARY_PATH=${ld}:$LD_LIBRARY_PATH
-  export JAVA_CPPFLAGS=-I${jdk11}/include/
-  export JAVA_HOME=${jdk11.home}
+  export JAVA_CPPFLAGS=-I${jdk}/include/
+  export JAVA_HOME=${jdk.home}
   export MAVEN_OPTS='-Xms300m -Xmx300m'
 	
   export PATH=:"/home/prehonor/.local/bin":$PATH

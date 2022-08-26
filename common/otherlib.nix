@@ -40,7 +40,7 @@ with pkgs; [
   file # A program that shows the type of files
   openexr # A high dynamic-range (HDR) image file format
   # spyder
-  jdk11 # The open-source Java Development Kit
+  jdk # The open-source Java Development Kit
   # dotnet-sdk     # .NET SDK 6.0.100
   # dotnet-sdk_5   # .NET SDK 5.0.403
   perl # The standard implementation of the Perl 5 programmming language
@@ -147,6 +147,7 @@ with pkgs; [
   libzip # A C library for reading, creating and modifying zip archives
   zstd # Zstandard real-time compression algorithm
   # glibc.dev    # The GNU C Library 导致问题编译cpp出现 <stdlib.h> not found https://discourse.nixos.org/t/trouble-in-building-c-environment/1413
+  krb5Full.dev
 
   capstone # Advanced disassembly library
   readline # Library for interactive line editing
@@ -173,7 +174,7 @@ with pkgs; [
   vulkan-loader
   texinfo # The GNU documentation system
   # xorriso grub2 qemu
-
+  e2fsprogs
   # libudev0-shim libgcrypt libgudev e2fsprogs SDL2
   libxkbcommon
 ]

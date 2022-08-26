@@ -2,7 +2,7 @@ with import <nixpkgs> { };
 mkShell rec {
   name = "react-native";
 
-  buildInputs = [ jdk11 fontconfig glibc ];
+  buildInputs = [ jdk fontconfig glibc ];
 
   ld = stdenv.lib.makeLibraryPath ([ stdenv.cc.cc.lib stdenv.cc.libc zlib ]);
   GRADLE_OPTS =

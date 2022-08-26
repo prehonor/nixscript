@@ -32,8 +32,8 @@ mkShell rec {
 
 
 
-    export JAVA_CPPFLAGS=-I${jdk11}/include/
-    export JAVA_HOME=${jdk11.home}
+    export JAVA_CPPFLAGS=-I${jdk}/include/
+    export JAVA_HOME=${jdk.home}
     export ANT_HOME="/ah/prehonor/Programmers/apache-ant-1.10.8"
 
 

@@ -3,9 +3,9 @@ mkShell rec {
   name = "patchCppTools";
 
   buildInputs = [
-    jdk11
-    llvm_9
-    clang_9
+    jdk
+    llvm
+    clang
     gdb
     gcc
     cmake

@@ -3,7 +3,7 @@ mkShell rec {
   name = "react-native";
   
   buildInputs = [
-    jdk11
+    jdk
 #     gcc
 #     pkg-config
 #     autoconf

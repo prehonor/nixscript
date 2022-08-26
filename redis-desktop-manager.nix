@@ -20,7 +20,7 @@ mkShell rec {
         cmake
         pkgconfig
 
-        jdk11
+        jdk
         (python3.withPackages(ps: with ps; [ pip urllib3 ]))
         gcc gdb llvm clang 
         libxml2 libxslt
@@ -47,8 +47,8 @@ mkShell rec {
     export MAVEN_OPTS='-Xms300m -Xmx300m'
 
 
-    export JAVA_CPPFLAGS=-I${jdk11}/include/
-    export JAVA_HOME=${jdk11.home}
+    export JAVA_CPPFLAGS=-I${jdk}/include/
+    export JAVA_HOME=${jdk.home}
     
 
     unset http_proxy

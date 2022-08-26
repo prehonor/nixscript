@@ -16,7 +16,7 @@ let
           
             python
            
-            jdk11
+            jdk
 
             libxml2 libxslt openssl libGL
             libmysqlclient
@@ -39,8 +39,8 @@ let
                 export MAVEN_OPTS='-Xms300m -Xmx300m'
 
 
-                export JAVA_CPPFLAGS=-I${jdk11}/include/
-                export JAVA_HOME=${jdk11.home}
+                export JAVA_CPPFLAGS=-I${jdk}/include/
+                export JAVA_HOME=${jdk.home}
 
                 export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
                 export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup

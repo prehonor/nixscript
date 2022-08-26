@@ -103,7 +103,7 @@ in pkgs.stdenv.mkDerivation {
     # jetbrains.webstorm jetbrains.idea-ultimate jetbrains.clion 
  
     qt5.full
-    jdk11
+    jdk
     
 
     boost_x liburing gmock libmysqlclient libmysqlconnectorcpp
@@ -187,8 +187,8 @@ in pkgs.stdenv.mkDerivation {
     export MAVEN_OPTS='-Xms300m -Xmx300m'
 
 
-    export JAVA_CPPFLAGS=-I${jdk11}/include/
-    export JAVA_HOME=${jdk11.home}
+    export JAVA_CPPFLAGS=-I${jdk}/include/
+    export JAVA_HOME=${jdk.home}
     export ANT_HOME="/ah/prehonor/Programmers/apache-ant-1.10.8"
 
 

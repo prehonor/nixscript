@@ -3,7 +3,7 @@ mkShell rec {
   name = "mindmaster";
 buildInputs = [
       gtk3
-      jdk11
+      jdk
       xorg.libXtst
       gnome2.gtk
       gnome2.gnome_vfs
