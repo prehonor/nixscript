@@ -1,37 +1,5 @@
 cd /ah/prehonor/haskell-project/lapce
 cargo build --release
-git branch -a
-git tag
-git checkout -b v0010 v0.0.10
-cargo build --release
-export http_proxy=http://127.0.0.1:8889
-export https_proxy=$http_proxy
-export ftp_proxy=$http_proxy
-export all_proxy=$http_proxy
-cargo build --release
-export http_proxy=socks5://127.0.0.1:1080
-export https_proxy=$http_proxy
-export ftp_proxy=$http_proxy
-export all_proxy=$http_proxy
-cargo build --release
-unset http_proxy
-unset https_proxy
-unset ftp_proxy
-unset all_proxy
-cargo build --release
-cargo build --release
-cargo build --release
-cargo build --release
-cd /ah/prehonor/haskell-project/lapce
-cargo build --release
-export http_proxy=http://127.0.0.1:8889
-export https_proxy=$http_proxy
-export ftp_proxy=$http_proxy
-export all_proxy=$http_proxy
-cargo build --release
-cargo build --release
-cd /ah/prehonor/haskell-project/lapce
-cargo build --release
 cargo build --release
 ls
 cd target/
@@ -486,3 +454,47 @@ cd ~/Downloads/WindTerm_2.5.0
 ldd WindTerm 
 cd ~/Downloads/WindTerm_2.5.0
 ldd WindTerm 
+cd build/
+cmake ..
+cd build/
+cmake ..
+clion > /dev/null 2>&1 &
+make 
+make
+make 
+clion > /dev/null 2>&1 &
+clion > /dev/null 2>&1 &
+clion > /dev/null 2>&1 &
+clion > /dev/null 2>&1 &
+clion > /dev/null 2>&1 &
+export QT_QPA_PLATFORM="xcb"
+rstudio 
+rstudio 
+rstudio 
+clion > /dev/null 2>&1 &
+export QT_QPA_PLATFORM="xcb"
+rstudio 
+clion > /dev/null 2>&1 &
+clion > /dev/null 2>&1 &
+ldd /home/prehonor/R/x86_64-pc-linux-gnu-library/4.2/Rcpp/libs
+ldd /home/prehonor/R/x86_64-pc-linux-gnu-library/4.2/Rcpp/libs/Rcpp.so 
+export QT_QPA_PLATFORM="xcb"
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+clion > /dev/null 2>&1 &
+rstudio 
+export QT_QPA_PLATFORM="xcb"
+rstudio 
+rstudio 
+rstudio 
+rstudio 
+rstudio 

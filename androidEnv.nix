@@ -2,11 +2,11 @@ with import <nixpkgs> { };
 mkShell rec {
   name = "react-native";
 
-  buildInputs = [ jdk fontconfig glibc ];
+  buildInputs = [ jdk fontconfig glibc autoPatchelfHook ];
 
-  ld = stdenv.lib.makeLibraryPath ([ stdenv.cc.cc.lib stdenv.cc.libc zlib ]);
+  ld = lib.makeLibraryPath ([ stdenv.cc.cc.lib stdenv.cc.libc zlib ]);
   GRADLE_OPTS =
-    "-Dorg.gradle.project.android.aapt2FromMavenOverride=/gh/prehonor/Android/Sdk/build-tools/28.0.3/aapt2";
+    "-Dorg.gradle.project.android.aapt2FromMavenOverride=/gh/prehonor/Android/Sdk/build-tools/33.0.0/aapt2";
 
   shellHook = ''
     interp="$(cat $NIX_CC/nix-support/dynamic-linker)"

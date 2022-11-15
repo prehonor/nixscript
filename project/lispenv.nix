@@ -36,7 +36,14 @@ with import <nixpkgs> {};
     networkmanager
     qrencode libdmtx
     sndio
-    libGL SDL2 SDL2_ttf SDL2_image sfml
+    libGL SDL2 SDL2_ttf SDL2_image sfml glfw-wayland
+    alsa-lib egl-wayland wayland
+    glslang
+    vulkan-headers
+    vulkan-loader
+    vulkan-validation-layers
+    vulkan-tools
+    glow
   ];
   BINDGEN_EXTRA_CLANG_ARGS =
     # Includes with normal include path
@@ -49,6 +56,7 @@ with import <nixpkgs> {};
       ''-I"${glib.dev}/include/glib-2.0"''
       "-I${glib.out}/lib/glib-2.0/include/"
       "-I${libcxx.dev}/include/c++/v1"
+      "-I${SDL2.dev}/SDL2"
     ];
   RUSTFLAGS = (builtins.map (a: "-L ${a}/lib") [
     # libvmi # 需要 export NIXPKGS_ALLOW_INSECURE=1
@@ -57,13 +65,13 @@ with import <nixpkgs> {};
    pkg-config gnumake meson ninja libsForQt5.qt5.qmake
   flex bison media-player-info scons ];
 
-  libpaths = lib.makeLibraryPath [ gtk3 libfm' glib cairo pango libjpeg curl openssl gdk-pixbuf ];
+  libpaths = lib.makeLibraryPath [ gtk3 libfm' glib cairo pango libjpeg curl openssl gdk-pixbuf libGL wayland libxkbcommon xorg.libXcursor xorg.libXrandr xorg.libXi xorg.libX11 vulkan-loader glow ];
 
   cmakeFlags = [
     "-DDocBookXML4_DTD_DIR=${docbook_xml_dtd_45}/xml/dtd/docbook"
     "-DDocBookXSL_DIR=${docbook_xsl_ns}/xml/xsl/docbook"
   ];
- 
+  XDG_DATA_DIRS = builtins.getEnv "XDG_DATA_DIRS";
   shellHook = ''
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${libpaths}:/home/prehonor/CLionProjects/EQL5
     export PATH=$PATH:/home/prehonor/CLionProjects/EQL5
@@ -74,6 +82,7 @@ with import <nixpkgs> {};
     export PATH=$PATH:"$(rustc --print sysroot)/bin/":"$CARGO_HOME/bin:/home/prehonor/.local/bin"
     export DocBookXML4_DTD_DIR=${docbook_xml_dtd_45}/xml/dtd/docbook
     export DocBookXSL_DIR=${docbook_xsl_ns}/xml/xsl/docbook
+    export ATSHOME=${ats2}
   '';
     
 }

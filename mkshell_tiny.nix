@@ -97,18 +97,6 @@ in
 
       export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/.local/usr/lib/pkgconfig
 
-      # idea 调试 rust 会下载本地调试插件和lldb调试器 ，需要patchelf
-
-      # export LD_LIBRARY_PATH=/home/prehonor/.cache/JetBrains/IntelliJIdea2021.2/intellij-rust/lldb/lib::$LD_LIBRARY_PATH
-     
-      # autoPatchelf /home/prehonor/.cache/JetBrains/IntelliJIdea2021.2/intellij-rust/lldb/bin
-      # autoPatchelf /ah/prehonor/.npm
-
-
-      # export PIP_PREFIX=/home/prehonor/.local/pythonEnvs/pip_packages
-      # export PYTHONPATH="$PIP_PREFIX/${python.sitePackages}:$PYTHONPATH"
-      # export PATH="$PIP_PREFIX/bin:$PATH"
-      # unset SOURCE_DATE_EPOCH
 
       
       export GOROOT=${GOROOT}
@@ -124,8 +112,6 @@ in
       export LIBPATH=${ld}
 
       
-      # export QT_DEBUG_PLUGINS=1
-      # export XDG_DATA_DIRS=$XDG_DATA_DIRS:"${gtk3}/share/gsettings-schemas/${gtk3.name}" # also right
 
 
       LIBRARY_PATH=""
@@ -139,8 +125,7 @@ in
         
       source /home/prehonor/.local/pythonEnvs/spider/bin/activate
     
-      # unityhub 下载的sdk 在重启后 无法识别
-      # find /gh/prehonor/unity/2022.1.3f1c1/Editor -type f -perm -0100 -exec patchelf --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" {} \;
+
       unset http_proxy
       unset https_proxy
       unset ftp_proxy

@@ -94,7 +94,8 @@ with pkgs;
     nspr # Netscape Portable Runtime, a platform-neutral API for system-level and libc-like functions
     nss # A set of libraries for development of security-enabled client and server applications
     freeglut # Create and manage windows containing OpenGL contexts
-    boost # Collection of C++ libraries
+    boost_x # Collection of C++ libraries
+    gtest
     alsa-lib # ALSA, the Advanced Linux Sound Architecture alsa-oss emulation
     liburing # Userspace library for the Linux io_uring API
     # gmock          # Google's framework for writing C++ tests 从21开始就没有了 

@@ -10,6 +10,8 @@
       pygobject3
       gst-python
       jedi-language-server
+      setuptools 
+      wheel
     ]);
   mypy_v = version;
 }
