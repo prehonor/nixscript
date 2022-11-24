@@ -3,8 +3,8 @@
     with ps; [
       pip
       urllib3
-      pytorch-bin
-      torchvision-bin
+      # pytorch-bin
+      # torchvision-bin
       pyside2
       dbus-python
       pygobject3
